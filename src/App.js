@@ -1,41 +1,38 @@
-import React, { useState } from 'react';
-import './index.css';
-import Home from './Components/Home';
-import Form from './Components/Form';
-import { Route, Link, Switch } from 'react-router-dom';
+import React from 'react';
+import axios from 'axios';
+import Form from './components/Form';
+import Home from './components/Home';
+import './App.css';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 const App = () => {
 
-export default function App() {
-
-  const [pizza, setPizza] = useState('');
   return (
+    
+   
+    <div>
     <>
       <h1>Lambda Eats</h1>
-      <p>Good pizza dough can’t just be tossed around.</p>
+      <p>Good pizza can't just be tossed around!</p>
     </>
-    <div className="App">
-      <nav>
-        <h1 className="store-header">Lambda Eats</h1>
-        <div className="nav-links">
+    <Router>
+      <nav className="navbar">
+          <Link to="/">
+            <button name = 'homebutton'>Home</button>
+            </Link>
+          <Link to="/form"> 
+          <button name = 'orderbutton'>Let's Build A Pizza!!</button>
+          </Link>
 
-          <Link to="/">Home</Link>
-          <Link to="/pizza">Build Your Pizza!</Link>
-        </div>
       </nav>
-
-      <Switch>
-
-        <Route path="/pizza">
-
-          <Form pizza={pizza} />
-        </Route>
-
-        <Route path="/" component={Home} />
-        
-      </Switch>
-   </div>
-    
-  });
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/form" component={Form} />
+        </Switch>
+      </div>
+    </Router>
+    </div>
+  );
 };
 export default App;

@@ -19,7 +19,7 @@ function Form() {
     const [errors, setErrors] = useState(initialState);
 
     const formSchema = yup.object().shape({
-        name: yup.string().required('Please enter a name').min(2),
+        name: yup.string().required('Please enter your name').min(2),
         size: yup.string().required('Please select a size'),
         sauce: yup.string().required(),
         toppings: yup.string().required(),
@@ -54,6 +54,7 @@ function Form() {
        e.preventDefault();
 
        axios
+       
        .post('https://reqres.in/api/unknown', pizzaForm)
        .then(res => {
         setPost(res.data);
@@ -62,7 +63,7 @@ function Form() {
     setServerError(null);
     })
     .catch(err => {
-        setServerError(alert('There was a server error'));
+        setServerError(alert('Server error'));
     }); 
 };
 
